@@ -1,21 +1,23 @@
 package com.aibees.api.excel.vo;
 
+import org.apache.poi.ss.usermodel.Cell;
+
 import java.util.List;
 import java.util.Map;
 
-public class RowVo<K, V> {
+public class RowVo {
 
-    private List<Map<K, V>> rows = null;
+    private List<Map<Cell, Cell>> rows = null;
 
     public RowVo() { }
 
-    public RowVo(List<Map<K, V>> rows) {
+    public RowVo(List<Map<Cell, Cell>> rows) {
         this.rows = rows;
     }
 
-    public List<Map<K, V>> getRows() { return this.rows; }
+    public List<Map<Cell, Cell>> getRows() { return this.rows; }
 
-    public void setRows(List<Map<K, V>> row) {
+    public void setRows(List<Map<Cell, Cell>> row) {
         this.rows = row;
     }
 }

@@ -20,4 +20,10 @@ public class HeaderVo {
     }
 
     public int getCnt() { return this.header.size(); }
+
+    public void printHeader() {
+        for(Cell c : this.header) {
+            System.out.println(c.getCellType() + " : " + c.toString());
+        }
+    }
 }

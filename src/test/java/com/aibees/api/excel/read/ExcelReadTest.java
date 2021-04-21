@@ -11,12 +11,10 @@ public class ExcelReadTest {
         ExcelReader xlsReader = new ExcelReader();
         // read file
         try {
-            xlsReader.setFile(new File("./test.xlsx"), true);
+            xlsReader.setFile(new File("./test1.xls"), true);
             int sheetCnt = xlsReader.getSheetSize();
 
-            for(int idx = 0; idx < sheetCnt; idx++) {
-
-            }
+            xlsReader.getKeyValue(0);
 
         } catch(Exception e) {
             e.printStackTrace();

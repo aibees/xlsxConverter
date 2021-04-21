@@ -4,6 +4,7 @@ import com.aibees.api.excel.convert.RowUtil;
 import com.aibees.api.excel.vo.HeaderVo;
 import com.aibees.api.excel.vo.SheetVo;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -13,19 +14,17 @@ import java.util.Map;
 
 public class ExcelReader extends ExcelCommon {
 
-    private File file = null;
     private boolean isHeader = true;
+    XSSFWorkbook wb = null;
 
     /**
      * Data Variable for `One` Sheet
      */
-    private HeaderVo headers = null;
-    private List<Map<String, String>> rows = null;
-    private SheetVo<String, String> sheet = null;
-    private List<SheetVo<String, String>> sheets = null;
+    private HeaderVo headers = null; // List<Cell>
+    private List<SheetVo> sheets = null;
 
-    public void setFile(File file) {
-        this.file = file;
+    public void setFile(File file) throws Exception {
+        this.wb = getWorkBook(file);
         this.isHeader = true;
     }
 
@@ -34,13 +33,13 @@ public class ExcelReader extends ExcelCommon {
      * @param file
      * @param isHeader
      */
-    public void setFile(File file, boolean isHeader) {
-        this.file = file;
+    public void setFile(File file, boolean isHeader) throws Exception {
+        this.wb = getWorkBook(file);
         this.isHeader = isHeader;
     }
 
     public int getSheetSize() throws Exception {
-        return getWorkBook(this.file).getNumberOfSheets();
+        return this.wb.getNumberOfSheets();
     }
 
     public String[] toCSV() {
@@ -49,16 +48,26 @@ public class ExcelReader extends ExcelCommon {
         return rows;
     }
 
+    public void getKeyValue(int sheet) {
+        ToKeyValue(sheet);
+    }
+
     private void ToKeyValue(int sheetNum) {
         try {
-            XSSFWorkbook wb = getWorkBook(this.file);
-            XSSFSheet sheet = wb.getSheetAt(sheetNum);
+            XSSFSheet sheet = this.wb.getSheetAt(sheetNum);
 
             headers = new HeaderVo();
 
-            if(isHeader) {
+            if(isHeader) { // True : Header 존재
                 headers.setHeader(RowUtil.getInstance().RowToList(sheet.getRow(0)));
             }
+
+            headers.printHeader();
+
+            int rowCnt = sheet.getLastRowNum();
+            System.out.println("last rownum : " + rowCnt);
+
+
 
         } catch(Exception e) {
          e.printStackTrace();

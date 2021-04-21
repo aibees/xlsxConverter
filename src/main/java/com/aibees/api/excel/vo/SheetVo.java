@@ -1,13 +1,15 @@
 package com.aibees.api.excel.vo;
 
-public class SheetVo<K, V> {
+import java.util.List;
+
+public class SheetVo {
 
     private HeaderVo    header = null;
-    private RowVo<K, V> row    = null;
+    private List<RowVo> row    = null;
 
     public SheetVo() { }
 
-    public SheetVo(HeaderVo header, RowVo<K, V> row) {
+    public SheetVo(HeaderVo header, List<RowVo> row) {
         this.header = header;
         this.row = row;
     }
@@ -16,7 +18,7 @@ public class SheetVo<K, V> {
         return header;
     }
 
-    public RowVo<K, V> getRow() {
+    public List<RowVo> getRow() {
         return row;
     }
 
@@ -24,7 +26,7 @@ public class SheetVo<K, V> {
         this.header = header;
     }
 
-    public void setRow(RowVo<K, V> row) {
+    public void setRow(List<RowVo> row) {
         this.row = row;
     }
 }
