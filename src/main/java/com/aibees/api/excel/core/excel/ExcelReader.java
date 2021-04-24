@@ -65,7 +65,16 @@ public class ExcelReader extends ExcelCommon {
             headers.printHeader();
 
             int rowCnt = sheet.getLastRowNum();
-            System.out.println("last rownum : " + rowCnt);
+
+            for(int i = 1; i <= rowCnt; i++) {
+                Row r = sheet.getRow(i);
+                System.out.print("| ");
+                for(int idx = 0; idx < headers.getHeaderSize(); idx++) {
+                    Cell c = r.getCell(idx);
+                    System.out.print(c.toString() + " | ");
+                }
+                System.out.println();
+            }
 
 
 

@@ -19,11 +19,15 @@ public class HeaderVo {
         this.header = header;
     }
 
-    public int getCnt() { return this.header.size(); }
+    public int getHeaderSize() {
+        return header.size();
+    }
 
     public void printHeader() {
+        System.out.print("| ");
         for(Cell c : this.header) {
-            System.out.println(c.getCellType() + " : " + c.toString());
+            System.out.print(c.toString() + " | ");
         }
+        System.out.println();
     }
 }

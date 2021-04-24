@@ -11,7 +11,7 @@ public class ExcelReadTest {
         ExcelReader xlsReader = new ExcelReader();
         // read file
         try {
-            xlsReader.setFile(new File("./test1.xls"), true);
+            xlsReader.setFile(new File("./test1.xlsx"), true);
             int sheetCnt = xlsReader.getSheetSize();
 
             xlsReader.getKeyValue(0);
