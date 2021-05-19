@@ -132,6 +132,7 @@ public class CsvParser implements ParseListener<List<String>> {
 					f = false;
 				else
 					f = true;
+
 				continue;
 			}
 			
