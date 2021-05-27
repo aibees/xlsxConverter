@@ -1,7 +1,15 @@
 package com.aibees.api.excel.function;
 
+import com.aibees.api.excel.vo.CellVo;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ReadFunction {
 
@@ -27,5 +35,22 @@ public class ReadFunction {
         }
 
         return sheet.getRow(mergedCell.getFirstRow()).getCell(mergedCell.getFirstColumn()).getStringCellValue();
+    }
+
+    public List<CellVo> RowToList(XSSFSheet sheet) {
+        int headerRow = 0;
+
+        List<CellVo> rowList = new LinkedList<CellVo>();
+        Row row = sheet.getRow(headerRow);
+        int idx = 0;
+
+        while(true) {
+            if(row.getCell(idx) == null) {
+                break;
+            } else {
+                rowList.add(new CellVo(row.getCell(idx++).getStringCellValue(), false, -1));
+            }
+        }
+        return rowList;
     }
 }

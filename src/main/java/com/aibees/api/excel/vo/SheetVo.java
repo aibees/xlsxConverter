@@ -29,4 +29,20 @@ public class SheetVo {
     public void setRow(List<RowVo> row) {
         this.row = row;
     }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        // header
+        sb.append(this.header.toString()).append("\r\n");
+        // rows
+        for(RowVo r : this.row) {
+            String str = "| ";
+            for(int i = 0; i < this.header.getHeaderSize(); i++) {
+                CellVo col = this.header.getHeaderByIndex(i);
+                str = str.concat(r.getRows().get(col).getValue() + " | ");
+            }
+            sb.append(str).append("\r\n");
+        }
+      return sb.toString();
+    };
 }

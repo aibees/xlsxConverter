@@ -1,31 +1,40 @@
 package com.aibees.api.excel.vo;
 
-import org.apache.poi.ss.usermodel.Cell;
-
 import java.util.List;
 
 public class HeaderVo {
-    private List<Cell> header = null;
+    private List<CellVo> header = null; // List -> LinkedList
 
     public HeaderVo() { }
 
-    public HeaderVo(List<Cell> header) {
+    public HeaderVo(List<CellVo> header) {
         this.header = header;
     }
 
-    public List<Cell> getHeader() { return this.header; }
+    public List<CellVo> getHeader() { return this.header; }
 
-    public void setHeader(List<Cell> header) {
+    public void setHeader(List<CellVo> header) {
         this.header = header;
     }
+
+    public CellVo getHeaderByIndex(int idx) { return this.header.get(idx); }
 
     public int getHeaderSize() {
         return header.size();
     }
 
+    public String toString() {
+        StringBuilder sb = new StringBuilder("| ");
+        for(CellVo c : this.header) {
+            sb.append(c.toString() + " | ");
+        }
+
+        return sb.toString();
+    }
+
     public void printHeader() {
         System.out.print("| ");
-        for(Cell c : this.header) {
+        for(CellVo c : this.header) {
             System.out.print(c.toString() + " | ");
         }
         System.out.println();

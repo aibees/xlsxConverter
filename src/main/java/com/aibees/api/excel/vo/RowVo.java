@@ -2,22 +2,29 @@ package com.aibees.api.excel.vo;
 
 import org.apache.poi.ss.usermodel.Cell;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class RowVo {
 
-    private List<Map<Cell, Cell>> rows = null;
+    private Map<CellVo, CellVo> rows = null;
 
-    public RowVo() { }
+    public RowVo() {
+        this.rows = new HashMap();
+    }
 
-    public RowVo(List<Map<Cell, Cell>> rows) {
+    public RowVo(Map<CellVo, CellVo> rows) {
         this.rows = rows;
     }
 
-    public List<Map<Cell, Cell>> getRows() { return this.rows; }
+    public Map<CellVo, CellVo> getRows() { return this.rows; }
 
-    public void setRows(List<Map<Cell, Cell>> row) {
+    public void setRows(Map<CellVo, CellVo> row) {
         this.rows = row;
     }
+
+    public void addToRow(CellVo k, CellVo v) { this.rows.put(k, v); }
+
 }
